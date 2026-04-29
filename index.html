@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Logica Portofolio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            
+        }
+
+        .navbar {
+            padding: 40px 0;
+            background: #000;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 24px;
+            color: #fff !important;
+        }
+
+        /* Halaman Utama */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .judul-utama {
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 0.85;
+            letter-spacing: -2px;
+            margin: 0;
+        }
+
+        .teks-abu {
+            color: #333;
+        }
+
+        .foto-profil {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .deskripsi-singkat {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.6;
+            max-width: 280px;
+            margin-bottom: 30px;
+        }
+
+        /* Tombol */
+        .btn-custom-white {
+            background: #fff;
+            color: #000;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 12px;
+           
+        }
+        .btn-custom-white:hover {
+            background-color: #5d5555; 
+        }
+
+        .btn-custom-outline {
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn-custom-outline:hover {
+            background-color: #ffffff; 
+            color: #000;
+        }
+
+        .btn-custom-grey {
+            background: #787373;
+            color: #000000;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 12px;
+            
+        }
+        .btn-custom-grey:hover {
+            background-color: #ffffff; 
+            color: #000;
+        }
+
+        /* Porto */
+        .portfolio-section {
+            padding: 100px 0;
+        }
+
+        .label-section {
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #666;
+            margin-bottom: 80px;
+            text-transform: uppercase;
+        }
+
+        .proyek-item {
+            margin-bottom: 120px;
+        }
+
+        .info-proyek {
+            color: #888;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .nama-proyek {
+            font-size: 45px;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        .detail-proyek {
+            color: #666;
+            max-width: 320px;
+            display: inline-block;
+        }
+
+        .link-visit {
+            display: block;
+            margin-top: 25px;
+            color: #888;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .gambar-proyek {
+            max-width: 500px;
+            border-radius: 20px;
+        }
+
+        .garis-tengah {
+            border-left: 1px solid #222;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Contact */
+        .contact-section {
+            padding: 150px 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4)), url('7.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .contact-box {
+            background: #000; 
+            padding: 60px 40px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-contact {
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-contact:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">LOGICA.</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                
+                <div class="col-lg-4">
+                    <h1 class="judul-utama">
+                        Logica
+                        <br><span class="teks-abu">Fikru</span><br>
+                        Al Farabi
+                    </h1>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <img src="2.png" class="foto-profil" alt="Profil Logica">
+                </div>
+
+                <div class="col-lg-4 text-end">
+                    <div class="d-flex flex-column align-items-end">
+                        <p class="deskripsi-singkat">
+                            Independent developer crafting immersive digital experiences through code and minimalist strategic impact.
+                        </p>
+                        <a href="#porto" class="btn-custom-white">Experience View</a>
+                        <a href="#contact" class="btn-custom-outline">LET'S TALK</a>
+                        <a href="https://drive.google.com/file/d/1-GAZr5SJqnZD3IlFgjY0fwpfqU_7zg_P/view?usp=sharing" class="btn-custom-grey">CV</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="porto" class="portfolio-section">
+        <div class="container">
+            
+            <p class="label-section">Experience View</p>
+
+            <div class="row align-items-center proyek-item">
+                <div class="col-md-6 text-end pe-5">
+                    <p class="info-proyek">2026 / Web Development</p>
+                    <h2 class="nama-proyek">MGMP PPKN Kab.Mojokerto</h2>
+                    <p class="detail-proyek">
+                        An interactive development and communication hub for Junior High School Civics teachers in Mojokerto Regency.
+                    </p>
+                    <a href="https://mgmp-ppkn-smp-mojokerto.netlify.app/" class="link-visit">VISIT WEBSITE</a>
+                </div>
+                <div class="col-md-6 ps-5 garis-tengah">
+                    <img src="3.png" class="gambar-proyek" alt="MGMP PPKN Kab.Mojokerto">
+                </div>
+            </div>
+
+            <div class="row align-items-center proyek-item">
+                <div class="col-md-6 text-end pe-5">
+                    <img src="4.png" class="gambar-proyek" alt="PPKA Indreng Genitri">
+                </div>
+                <div class="col-md-6 ps-5 garis-tengah">
+                    <p class="info-proyek">2026-OnGoing / Web Development</p>
+                    <h2 class="nama-proyek">PPKA Indreng Genitri</h2>
+                    <p class="detail-proyek">
+                        A natural learning space in the heart of the pine forest. We blend environmental conservation missions with exciting adventures, ranging from serene camping grounds to diverse educational outbound activities for all ages.
+                    </p>
+                    <a href="https://www.instagram.com/ppka_indreng.genitri/" class="link-visit">VISIT INSTAGRAM</a>
+                </div>
+            </div>
+
+            <div class="row align-items-center proyek-item">
+                <div class="col-md-6 text-end pe-5">
+                    <p class="info-proyek">2025 / Project Officer</p>
+                    <h2 class="nama-proyek">Aksi Sepuluh Nopember</h2>
+                    <p class="detail-proyek">
+                        Student-led civic and social movement at Institut Teknologi Sepuluh Nopember (ITS) that channels student
+                        aspirations through organized action, public discourse, and social advocacy, while also internalizing the values of the November Tenth
+                        Struggle across the ITS student community. The movement emphasizes critical thinking, collective responsibility, and constructive
+                        engagement in responding to societal and national issues.
+                    </p>
+                    <a href="https://www.instagram.com/aksi10nopemberits/" class="link-visit">VISIT INSTAGRAM</a>
+                </div>
+                <div class="col-md-6 ps-5 garis-tengah">
+                    <img src="5.png" class="gambar-proyek" alt="Aksi Sepuluh Nopember">
+                </div>
+            </div>
+
+            <div class="row align-items-center proyek-item">
+                <div class="col-md-6 text-end pe-5">
+                    <img src="6.png" class="gambar-proyek" alt="Idul Adha ITS">
+                </div>
+                <div class="col-md-6 ps-5 garis-tengah">
+                    <p class="info-proyek">2025 / Project Officer</p>
+                    <h2 class="nama-proyek">Idul Adha ITS</h2>
+                    <p class="detail-proyek">
+                        an annual religious and social event organized by the ITS academic community to commemorate the values of sacrifice,
+                        solidarity, and social responsibility. The program includes congregational worship, community engagement, and the distribution of qurban
+                        meat to surrounding communities, fostering compassion, collaboration, and sustainable social impact.
+                    </p>
+                    <a href="https://www.instagram.com/jmmi.its/" class="link-visit">VISIT INSTAGRAM</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+     <section id="contact" class="contact-section reveal">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-box">
+                        <p class="label-section" style="margin-bottom: 20px;">Start a Conversation</p>
+                        <h2>Let's create something great.</h2>
+                        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+                        
+                        <div class="contact-grid">
+                            <a href="https://wa.me/6283132819172" target="_blank" class="btn-contact">WhatsApp</a>
+                            <a href="https://www.instagram.com/logica.faa/" target="_blank" class="btn-contact">Instagram</a>
+                            <a href="mailto:logicafalfa@gmail.com" class="btn-contact">Email</a>
+                            <a href="https://www.linkedin.com/in/logica-fikru-alfarabi/" target="_blank" class="btn-contact">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
