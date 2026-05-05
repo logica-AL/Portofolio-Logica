@@ -2,9 +2,11 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logica Portofolio</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -12,212 +14,120 @@
             color: #fff;
             margin: 0;
             font-family: 'Inter', sans-serif;
-            
+            overflow-x: hidden;
         }
 
-        .navbar {
-            padding: 40px 0;
-            background: #000;
+        /* --- ANIMASI INTRO (HERO) --- */
+        @keyframes popupMasuk {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        @keyframes fotoMasuk {
+            from { opacity: 0; transform: scale(1.3); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes ringMengecil {
+            0% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
         }
 
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 24px;
-            color: #fff !important;
-        }
+        /* --- HERO STYLE --- */
+        .navbar { padding: 40px 0; background: transparent; z-index: 1000; }
+        .navbar-brand { font-weight: 800; font-size: 24px; color: #fff !important; text-decoration: none; }
+        .hero-section { min-height: 100vh; display: flex; align-items: center; }
+        .judul-utama, .deskripsi-singkat, .btn-group-custom a { opacity: 0; animation: popupMasuk 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .judul-utama { animation-delay: 0.2s; font-size: clamp(50px, 8vw, 80px); font-weight: 800; line-height: 0.85; letter-spacing: -2px; margin: 0; }
+        .teks-abu { color: #333; }
+        .deskripsi-singkat { animation-delay: 0.4s; font-size: 15px; color: #999; line-height: 1.6; max-width: 280px; margin-bottom: 30px; }
+        .photo-wrapper { position: relative; display: inline-block; padding: 60px; }
+        .foto-profil { width: 100%; max-width: 450px; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover; position: relative; z-index: 10; opacity: 0; animation: fotoMasuk 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
+        .focus-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; border: 1px solid #444; border-radius: 50%; opacity: 0; z-index: 1; animation: ringMengecil 2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .ring-2 { animation-delay: 0.3s; }
+        .ring-3 { animation-delay: 0.6s; }
 
-        /* Halaman Utama */
-        .hero-section {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-        }
+        /* --- BUTTONS --- */
+        .btn-group-custom { display: flex; flex-direction: column; align-items: flex-end; }
+        .btn-custom-white { background: #fff; color: #000; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-bottom: 12px; animation-delay: 0.6s; }
+        .btn-custom-outline { border: 1px solid #333; color: #fff; padding: 10px 35px; border-radius: 50px; text-decoration: none; font-size: 14px; animation-delay: 0.7s; }
+        .btn-custom-grey { background: #787373; color: #000; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-top: 12px; animation-delay: 0.8s; }
+        .btn-custom-white:hover, .btn-custom-outline:hover, .btn-custom-grey:hover { opacity: 0.8; transform: translateY(-3px); transition: 0.3s; }
 
-        .judul-utama {
-            font-size: 80px;
-            font-weight: 800;
-            line-height: 0.85;
-            letter-spacing: -2px;
-            margin: 0;
-        }
+        /* --- PORTFOLIO HOVER SYSTEM --- */
+        .portfolio-section { padding: 100px 0; }
+        .label-section { text-align: center; font-size: 12px; letter-spacing: 4px; color: #666; margin-bottom: 80px; text-transform: uppercase; }
+        .proyek-item { margin-bottom: 120px; transition: 0.5s ease; }
+        .gambar-proyek { width: 100%; max-width: 500px; border-radius: 20px; filter: grayscale(100%) brightness(0.7); transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .nama-proyek { font-size: 45px; font-weight: 800; margin: 10px 0; color: #555; transition: all 0.5s ease; }
+        .info-proyek { color: #444; font-weight: bold; font-size: 13px; transition: 0.5s; }
+        .detail-proyek { color: #444; max-width: 320px; display: inline-block; transition: 0.5s; }
+        .garis-tengah { border-left: 1px solid #222; min-height: 400px; display: flex; flex-direction: column; justify-content: center; transition: 0.5s; }
 
-        .teks-abu {
-            color: #333;
-        }
+        .proyek-item:hover .gambar-proyek { filter: grayscale(0%) brightness(1); transform: scale(1.03); }
+        .proyek-item:hover .nama-proyek { color: #fff; transform: translateX(10px); }
+        .proyek-item:hover .info-proyek { color: #fff; }
+        .proyek-item:hover .detail-proyek { color: #888; }
+        .proyek-item:hover .garis-tengah { border-left-color: #555; }
 
-        .foto-profil {
-            width: 100%;
-            max-width: 500px;
-            aspect-ratio: 1/1;
-            border-radius: 50%;
-            object-fit: cover;
+        /* --- CONTACT SECTION (FULL TRANSPARENT) --- */
+        .contact-section { 
+            padding: 180px 0; 
+            position: relative;
+            overflow: hidden;
+            background-color: #050505;
         }
-
-        .deskripsi-singkat {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.6;
-            max-width: 280px;
-            margin-bottom: 30px;
-        }
-
-        /* Tombol */
-        .btn-custom-white {
-            background: #fff;
-            color: #000;
-            padding: 12px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 12px;
-           
-        }
-        .btn-custom-white:hover {
-            background-color: #5d5555; 
-        }
-
-        .btn-custom-outline {
-            border: 1px solid #333;
-            color: #fff;
-            padding: 10px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .btn-custom-outline:hover {
-            background-color: #ffffff; 
-            color: #000;
-        }
-
-        .btn-custom-grey {
-            background: #787373;
-            color: #000000;
-            padding: 12px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 12px;
-            margin-top: 12px;
-            
-        }
-        .btn-custom-grey:hover {
-            background-color: #ffffff; 
-            color: #000;
-        }
-
-        /* Porto */
-        .portfolio-section {
-            padding: 100px 0;
-        }
-
-        .label-section {
-            text-align: center;
-            font-size: 12px;
-            letter-spacing: 4px;
-            color: #666;
-            margin-bottom: 80px;
-            text-transform: uppercase;
-        }
-
-        .proyek-item {
-            margin-bottom: 120px;
-        }
-
-        .info-proyek {
-            color: #888;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        .nama-proyek {
-            font-size: 45px;
-            font-weight: 800;
-            margin: 10px 0;
-        }
-
-        .detail-proyek {
-            color: #666;
-            max-width: 320px;
-            display: inline-block;
-        }
-
-        .link-visit {
-            display: block;
-            margin-top: 25px;
-            color: #888;
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        .gambar-proyek {
-            max-width: 500px;
-            border-radius: 20px;
-        }
-
-        .garis-tengah {
-            border-left: 1px solid #222;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* Contact */
-        .contact-section {
-            padding: 150px 0;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4)), url('7.png');
+        .contact-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('7.png');
             background-size: cover;
             background-position: center;
+            z-index: 1;
+            transform: scale(1.1);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        .contact-box {
-            background: #000; 
-            padding: 60px 40px;
-            border-radius: 30px;
-            text-align: center;
+        .contact-section:hover .contact-bg { transform: scale(1); }
+        .contact-box { 
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0); /* 0% OPACITY */
+            padding: 80px 50px; 
+            border-radius: 40px; 
+            text-align: center; 
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        .contact-box h2 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 15px;
+        .contact-box:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
         }
-
-        .contact-box p {
-            color: #666;
-            margin-bottom: 40px;
+        .contact-box h2 { font-size: 48px; font-weight: 800; margin-bottom: 25px; letter-spacing: -1px; }
+        .contact-box p { color: #eee; margin-bottom: 40px; font-size: 16px; }
+        .contact-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-contact { 
+            padding: 14px 30px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            color: #fff; 
+            transition: 0.4s;
+            background: rgba(255, 255, 255, 0.05);
         }
+        .btn-contact:hover { background: #fff; color: #000; transform: scale(1.1); }
 
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+        html { scroll-behavior: smooth; }
+
+        @media (max-width: 991px) {
+            .text-end { text-align: center !important; }
+            .btn-group-custom { align-items: center !important; }
+            .garis-tengah { border-left: none; border-top: 1px solid #222; margin-top: 40px; padding-top: 40px; }
+            .contact-box h2 { font-size: 32px; }
         }
-
-        .btn-contact {
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid #333;
-            color: #fff;
-            display: flex;
-            align-items: center;
-        }
-
-        .btn-contact:hover {
-            background: #fff;
-            color: #000;
-            border-color: #fff;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
     </style>
 </head>
 <body>
@@ -231,116 +141,87 @@
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                
                 <div class="col-lg-4">
-                    <h1 class="judul-utama">
-                        Logica
-                        <br><span class="teks-abu">Fikru</span><br>
-                        Al Farabi
-                    </h1>
+                    <h1 class="judul-utama">Logica<br><span class="teks-abu">Fikru</span><br>Al Farabi</h1>
                 </div>
-
                 <div class="col-lg-4 text-center">
-                    <img src="2.png" class="foto-profil" alt="Profil Logica">
-                </div>
-
-                <div class="col-lg-4 text-end">
-                    <div class="d-flex flex-column align-items-end">
-                        <p class="deskripsi-singkat">
-                            Independent developer crafting immersive digital experiences through code and minimalist strategic impact.
-                        </p>
-                        <a href="#porto" class="btn-custom-white">Experience View</a>
-                        <a href="#contact" class="btn-custom-outline">LET'S TALK</a>
-                        <a href="https://drive.google.com/file/d/1-GAZr5SJqnZD3IlFgjY0fwpfqU_7zg_P/view?usp=sharing" class="btn-custom-grey">CV</a>
+                    <div class="photo-wrapper">
+                        <div class="focus-ring ring-1"></div>
+                        <div class="focus-ring ring-2"></div>
+                        <div class="focus-ring ring-3"></div>
+                        <img src="2.png" class="foto-profil" alt="Profil Logica">
                     </div>
                 </div>
-
+                <div class="col-lg-4 text-end">
+                    <div class="btn-group-custom">
+                        <p class="deskripsi-singkat">Independent developer crafting immersive digital experiences through code and minimalist strategic impact.</p>
+                        <a href="#porto" class="btn-custom-white">Experience View</a>
+                        <a href="#contact" class="btn-custom-outline">LET'S TALK</a>
+                        <a href="https://drive.google.com/file/d/1-GAZr5SJqnZD3IlFgjY0fwpfqU_7zg_P/view?usp=sharing" target="_blank" class="btn-custom-grey">CV</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="porto" class="portfolio-section">
         <div class="container">
-            
             <p class="label-section">Experience View</p>
-
+            
             <div class="row align-items-center proyek-item">
-                <div class="col-md-6 text-end pe-5">
+                <div class="col-md-6 text-end pe-lg-5">
                     <p class="info-proyek">2026 / Web Development</p>
                     <h2 class="nama-proyek">MGMP PPKN Kab.Mojokerto</h2>
-                    <p class="detail-proyek">
-                        An interactive development and communication hub for Junior High School Civics teachers in Mojokerto Regency.
-                    </p>
-                    <a href="https://mgmp-ppkn-smp-mojokerto.netlify.app/" class="link-visit">VISIT WEBSITE</a>
+                    <p class="detail-proyek">An interactive development and communication hub for Junior High School Civics teachers in Mojokerto Regency.</p>
+                    <div class="mt-3"><a href="https://mgmp-ppkn-smp-mojokerto.netlify.app/" target="_blank" style="color: #666; text-decoration: none; font-size: 12px;">VISIT WEBSITE</a></div>
                 </div>
-                <div class="col-md-6 ps-5 garis-tengah">
-                    <img src="3.png" class="gambar-proyek" alt="MGMP PPKN Kab.Mojokerto">
-                </div>
+                <div class="col-md-6 ps-lg-5 garis-tengah"><img src="3.png" class="gambar-proyek" alt="MGMP"></div>
             </div>
 
             <div class="row align-items-center proyek-item">
-                <div class="col-md-6 text-end pe-5">
-                    <img src="4.png" class="gambar-proyek" alt="PPKA Indreng Genitri">
-                </div>
-                <div class="col-md-6 ps-5 garis-tengah">
+                <div class="col-md-6 text-end pe-lg-5 order-2 order-md-1"><img src="4.png" class="gambar-proyek" alt="PPKA"></div>
+                <div class="col-md-6 ps-lg-5 garis-tengah order-1 order-md-2">
                     <p class="info-proyek">2026-OnGoing / Web Development</p>
                     <h2 class="nama-proyek">PPKA Indreng Genitri</h2>
-                    <p class="detail-proyek">
-                        A natural learning space in the heart of the pine forest. We blend environmental conservation missions with exciting adventures, ranging from serene camping grounds to diverse educational outbound activities for all ages.
-                    </p>
-                    <a href="https://www.instagram.com/ppka_indreng.genitri/" class="link-visit">VISIT INSTAGRAM</a>
+                    <p class="detail-proyek">A natural learning space in the heart of the pine forest, blending conservation with adventure.</p>
+                    <div class="mt-3"><a href="https://www.instagram.com/ppka_indreng.genitri/" target="_blank" style="color: #666; text-decoration: none; font-size: 12px;">VISIT INSTAGRAM</a></div>
                 </div>
             </div>
 
             <div class="row align-items-center proyek-item">
-                <div class="col-md-6 text-end pe-5">
+                <div class="col-md-6 text-end pe-lg-5">
                     <p class="info-proyek">2025 / Project Officer</p>
                     <h2 class="nama-proyek">Aksi Sepuluh Nopember</h2>
-                    <p class="detail-proyek">
-                        Student-led civic and social movement at Institut Teknologi Sepuluh Nopember (ITS) that channels student
-                        aspirations through organized action, public discourse, and social advocacy, while also internalizing the values of the November Tenth
-                        Struggle across the ITS student community. The movement emphasizes critical thinking, collective responsibility, and constructive
-                        engagement in responding to societal and national issues.
-                    </p>
-                    <a href="https://www.instagram.com/aksi10nopemberits/" class="link-visit">VISIT INSTAGRAM</a>
+                    <p class="detail-proyek">Student-led civic and social movement at ITS focusing on social advocacy and critical thinking.</p>
+                    <div class="mt-3"><a href="https://www.instagram.com/aksi10nopemberits/" target="_blank" style="color: #666; text-decoration: none; font-size: 12px;">VISIT INSTAGRAM</a></div>
                 </div>
-                <div class="col-md-6 ps-5 garis-tengah">
-                    <img src="5.png" class="gambar-proyek" alt="Aksi Sepuluh Nopember">
-                </div>
+                <div class="col-md-6 ps-lg-5 garis-tengah"><img src="5.png" class="gambar-proyek" alt="Aksi"></div>
             </div>
 
             <div class="row align-items-center proyek-item">
-                <div class="col-md-6 text-end pe-5">
-                    <img src="6.png" class="gambar-proyek" alt="Idul Adha ITS">
-                </div>
-                <div class="col-md-6 ps-5 garis-tengah">
+                <div class="col-md-6 text-end pe-lg-5 order-2 order-md-1"><img src="6.png" class="gambar-proyek" alt="Idul Adha"></div>
+                <div class="col-md-6 ps-lg-5 garis-tengah order-1 order-md-2">
                     <p class="info-proyek">2025 / Project Officer</p>
                     <h2 class="nama-proyek">Idul Adha ITS</h2>
-                    <p class="detail-proyek">
-                        an annual religious and social event organized by the ITS academic community to commemorate the values of sacrifice,
-                        solidarity, and social responsibility. The program includes congregational worship, community engagement, and the distribution of qurban
-                        meat to surrounding communities, fostering compassion, collaboration, and sustainable social impact.
-                    </p>
-                    <a href="https://www.instagram.com/jmmi.its/" class="link-visit">VISIT INSTAGRAM</a>
+                    <p class="detail-proyek">Annual religious and social event organized by the ITS academic community.</p>
+                    <div class="mt-3"><a href="https://www.instagram.com/jmmi.its/" target="_blank" style="color: #666; text-decoration: none; font-size: 12px;">VISIT INSTAGRAM</a></div>
                 </div>
             </div>
-
         </div>
     </section>
 
-     <section id="contact" class="contact-section reveal">
+    <section id="contact" class="contact-section">
+        <div class="contact-bg"></div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10 col-xl-8">
                     <div class="contact-box">
-                        <p class="label-section" style="margin-bottom: 20px;">Start a Conversation</p>
+                        <p class="label-section" style="margin-bottom: 20px;">Get In Touch</p>
                         <h2>Let's create something great.</h2>
                         <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-                        
                         <div class="contact-grid">
                             <a href="https://wa.me/6283132819172" target="_blank" class="btn-contact">WhatsApp</a>
                             <a href="https://www.instagram.com/logica.faa/" target="_blank" class="btn-contact">Instagram</a>
-                            <a href="mailto:logicafalfa@gmail.com" class="btn-contact">Email</a>
                             <a href="https://www.linkedin.com/in/logica-fikru-alfarabi/" target="_blank" class="btn-contact">LinkedIn</a>
                         </div>
                     </div>
